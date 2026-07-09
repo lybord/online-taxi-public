@@ -4,6 +4,7 @@ import com.ly.apipassenger.remote.ServiceVerificationcodeClient;
 import com.ly.apipassenger.service.VerificationCodeService;
 import com.ly.internalcommon.dto.ResponseResult;
 import com.ly.internalcommon.response.NumberCodeResponse;
+import com.ly.internalcommon.response.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         stringRedisTemplate.opsForValue().set(verificationCodePrefix + passengerPhone, String.valueOf(numberCode), 2, TimeUnit.MINUTES);
         // 调用第三方平台短信发送服务
         return ResponseResult.success();
+    }
+
+    @Override
+    public TokenResponse checkCode(String passengerPhone, String verificationCode) {
+
+        return new TokenResponse("token value");
     }
 }
