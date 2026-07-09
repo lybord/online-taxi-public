@@ -1,5 +1,7 @@
 package com.ly.apipassenger.service;
 
+import com.ly.internalcommon.dto.ResponseResult;
+
 public interface VerificationCodeService {
 
     /**
@@ -7,5 +9,5 @@ public interface VerificationCodeService {
      * @param passengerPhone
      * @return
      */
-    String generateCode(String passengerPhone);
+    ResponseResult generateCode(String passengerPhone);
 }

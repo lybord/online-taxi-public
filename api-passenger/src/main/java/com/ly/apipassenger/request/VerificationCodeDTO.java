@@ -1,4 +1,4 @@
-package com.ly.apipassenger.domain.dto;
+package com.ly.apipassenger.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

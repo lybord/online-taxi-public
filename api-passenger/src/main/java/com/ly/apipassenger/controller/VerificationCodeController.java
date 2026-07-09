@@ -1,7 +1,8 @@
 package com.ly.apipassenger.controller;
 
-import com.ly.apipassenger.domain.dto.VerificationCodeDTO;
+import com.ly.apipassenger.request.VerificationCodeDTO;
 import com.ly.apipassenger.service.VerificationCodeService;
+import com.ly.internalcommon.dto.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +15,8 @@ public class VerificationCodeController {
     private VerificationCodeService verificationCodeService;
 
     @GetMapping("/verification-code")
-    public String verificationCode(@RequestBody VerificationCodeDTO verificationCodeDTO) {
+    public ResponseResult verificationCode(@RequestBody VerificationCodeDTO verificationCodeDTO) {
         String passengerPhone = verificationCodeDTO.getPassengerPhone();
-        System.out.println("passengerPhone = " + passengerPhone);
         return verificationCodeService.generateCode(passengerPhone);
     }
 }

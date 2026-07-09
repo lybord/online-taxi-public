@@ -20,6 +20,10 @@ public class ResponseResult<T> {
     /** 响应业务数据 */
     private T data;
 
+    public static <T> ResponseResult<T> success() {
+        return new ResponseResult<T>().setCode(CommonStatusEnum.SUCCESS.getCode()).setMessage(CommonStatusEnum.SUCCESS.getValue());
+    }
+
     /** 构建成功响应 */
     public static <T> ResponseResult<T> success(T data) {
         return new ResponseResult<T>().setCode(CommonStatusEnum.SUCCESS.getCode()).setMessage(CommonStatusEnum.SUCCESS.getValue()).setData(data);

@@ -7,3 +7,8 @@ spring:
         server-addr: 1.12.247.222:8848
   application:
     name: api-passenger
+  data:
+    redis:
+      host: 1.12.247.222
+      port: 6379
+      password: root

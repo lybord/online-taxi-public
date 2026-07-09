@@ -12,7 +12,6 @@ public class NumberCodeController {
 
     @GetMapping("/numberCode/{size}")
     public ResponseResult<NumberCodeResponse> numberCode(@PathVariable Integer size) {
-        System.out.println("size = " + size);
         int numberCode = Integer.parseInt(RandomStringUtils.random(1, '1', '9', false, true) + RandomStringUtils.randomNumeric(size - 1));
         return ResponseResult.success(new NumberCodeResponse(numberCode));
     }
