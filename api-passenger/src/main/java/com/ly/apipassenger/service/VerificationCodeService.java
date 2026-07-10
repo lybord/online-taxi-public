@@ -8,9 +8,8 @@ public interface VerificationCodeService {
     /**
      * 调用验证码服务，获取验证码
      * @param passengerPhone
-     * @return
      */
-    ResponseResult generateCode(String passengerPhone);
+    void generateCode(String passengerPhone);
 
 
     TokenResponse checkCode(String passengerPhone, String verificationCode);

@@ -23,12 +23,11 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public ResponseResult generateCode(String passengerPhone) {
+    public void generateCode(String passengerPhone) {
         ResponseResult<NumberCodeResponse> numberCodeResponseResponseResult = serviceVerificationcodeClient.numberCode(6);
         int numberCode = numberCodeResponseResponseResult.getData().getNumberCode();
         stringRedisTemplate.opsForValue().set(generatorKeyByPhone(passengerPhone), String.valueOf(numberCode), 2, TimeUnit.MINUTES);
         // 调用第三方平台短信发送服务
-        return ResponseResult.success();
     }
 
     @Override
@@ -38,6 +37,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         if (verificationCode.equals(val)) {
             return new TokenResponse("token value");
         }
+
         return null;
     }
 
