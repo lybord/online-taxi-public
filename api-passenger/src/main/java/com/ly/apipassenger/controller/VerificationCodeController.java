@@ -1,6 +1,6 @@
 package com.ly.apipassenger.controller;
 
-import com.ly.apipassenger.request.VerificationCodeDTO;
+import com.ly.internalcommon.request.VerificationCodeDTO;
 import com.ly.apipassenger.service.VerificationCodeService;
 import com.ly.internalcommon.constant.CommonStatusEnum;
 import com.ly.internalcommon.dto.ResponseResult;
