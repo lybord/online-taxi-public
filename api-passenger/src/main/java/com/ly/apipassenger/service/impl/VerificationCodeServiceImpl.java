@@ -1,8 +1,10 @@
 package com.ly.apipassenger.service.impl;
 
+import com.ly.apipassenger.remote.ServicePassengerUserClient;
 import com.ly.apipassenger.remote.ServiceVerificationcodeClient;
 import com.ly.apipassenger.service.VerificationCodeService;
 import com.ly.internalcommon.dto.ResponseResult;
+import com.ly.internalcommon.request.VerificationCodeDTO;
 import com.ly.internalcommon.response.NumberCodeResponse;
 import com.ly.internalcommon.response.TokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private ServiceVerificationcodeClient serviceVerificationcodeClient;
 
     @Autowired
+    private ServicePassengerUserClient servicePassengerUserClient;
+
+    @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
@@ -34,11 +39,14 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     public TokenResponse checkCode(String passengerPhone, String verificationCode) {
         String key = generatorKeyByPhone(passengerPhone);
         String val = stringRedisTemplate.opsForValue().get(key);
-        if (verificationCode.equals(val)) {
-            return new TokenResponse("token value");
+
+        if (!verificationCode.trim().equals(val)) {
+            return null;
         }
 
-        return null;
+        servicePassengerUserClient.loginOrRegister(new VerificationCodeDTO(passengerPhone, verificationCode));
+
+        return new TokenResponse("token value");
     }
 
 
